@@ -13,31 +13,31 @@ CREATE TABLE products(
 );
 
 INSERT INTO products (product_name, department_name, price, stock_quantity)
-VALUES ("Human", "Krewella", "Dance");
+VALUES ("exploding kittens", "toys and games", 15.99, 10);
 
 INSERT INTO products (product_name, department_name, price, stock_quantity)
-VALUES ("TRNDSTTR","Black Coast", "Dance");
+VALUES ("xbox", "video games", 499.00, 20);
 
 INSERT INTO products (product_name, department_name, price, stock_quantity)
-VALUES ("Whos Next", "The Who", "Classic Rock");
+VALUES ("gopro", "electronics", 249.00, 9);
 
 INSERT INTO products (product_name, department_name, price, stock_quantity)
-VALUES ("Yellow Submarine", "The Beatles", "Classic Rock");
+VALUES ("LED TV", "electronics", 169.00, 16);
 
 INSERT INTO products (product_name, department_name, price, stock_quantity)
-VALUES ("Yellow Submarine", "The Beatles", "Classic Rock");
+VALUES ("ninja blender", "electronics", 98.99, 4);
 
 INSERT INTO products (product_name, department_name, price, stock_quantity)
-VALUES ("Human", "Krewella", "Dance");
+VALUES ("legos", "toys and games", 47.99, 11);
 
 INSERT INTO products (product_name, department_name, price, stock_quantity)
-VALUES ("TRNDSTTR","Black Coast", "Dance");
+VALUES ("bose headphones", "electronics", 120.49, 14);
 
 INSERT INTO products (product_name, department_name, price, stock_quantity)
-VALUES ("Whos Next", "The Who", "Classic Rock");
+VALUES ("bath robe", "clothing", 23.99, 20);
 
 INSERT INTO products (product_name, department_name, price, stock_quantity)
-VALUES ("Yellow Submarine", "The Beatles", "Classic Rock");
+VALUES ("basic T-shirt", "clothing", 10.00, 10);
 
 INSERT INTO products (product_name, department_name, price, stock_quantity)
-VALUES ("Yellow Submarine", "The Beatles", "Classic Rock");
+VALUES ("call of duty", "video games", 59.99, 3);
