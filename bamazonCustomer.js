@@ -17,12 +17,11 @@ var connection = mysql.createConnection({
 
 connection.connect(function (err) {
     if (err) throw err;
-    console.log("connected as id " + connection.threadId);
+    //console.log("connected as id " + connection.threadId);
     displayProducts();
-    //connection.end();
 });
 
-
+//function that displays all product information
 function displayProducts() {
     connection.query("SELECT * FROM products", function (err, res) {
         if (err) {
@@ -38,10 +37,10 @@ function displayProducts() {
     });
 };
 
+//function that prompts customers on what to buy
 function promptCustomer() {
     connection.query("SELECT * FROM products", function (err, res) {
         if (err) console.log(err);
-        console.log(res);
 
         inquirer.prompt([{
                 type: "input",
@@ -66,10 +65,9 @@ function promptCustomer() {
                 console.log("\n")
                 console.log("Sorry, Insufficient Quantity!");
                 console.log("\n")
-                return;
+                connection.end();
             } else {
                 var quantityUpdate = chosenProduct.stock_quantity - parseInt(answer.quantity);
-                console.log(quantityUpdate);
 
                 connection.query(
                     "UPDATE products SET ? WHERE ?", [
@@ -85,12 +83,18 @@ function promptCustomer() {
                             console.log(err)
                         } else {
                             var totalPrice = chosenProduct.price * parseInt(answer.quantity);
+                            console.log("\n")
+                            console.log("--------------------------------------------------");
                             console.log("Your total is be: " + totalPrice);
                             console.log("Thank you for your purchase!");
+                            console.log("We now only have " + quantityUpdate + " left!");
+                            console.log("--------------------------------------------------");
+                            console.log("\n")
+                            connection.end();
                         }
                     }
                 )
-            }; //end of else statement
+            }; 
         });
     });
 };
