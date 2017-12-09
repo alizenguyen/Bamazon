@@ -22,18 +22,16 @@ connection.connect(function (err) {
 });
 
 function managerDuties() {
-    inquirer.prompt([
-    {
+    inquirer.prompt([{
         type: "list",
         message: "Hello boss. Please select what you would like to do today?",
         name: "duty",
         choices: ["view products for sale", "view low inventory", "add to invetory", "add new product"]
-    },
-    ]).then(function (answer) {
+    }, ]).then(function (answer) {
         if (answer.duty === "view products for sale") {
             viewProducts();
         } else if (answer.duty === "view low inventory") {
-            console.log("low inventory function here");
+            lowInventory();
         } else if (answer.duty === "add to inventory") {
             console.log("add invetory function here")
         } else {
@@ -58,5 +56,17 @@ function viewProducts() {
 };
 
 function lowInventory() {
-
+    connection.query("SELECT * FROM products", function (err, res) {
+        if (err) throw err;
+        console.log(res);
+        var lowInvent = [];
+        for (var i = 0; i < res.length; i += 1) {
+            if (res[i].stock_quantity < 5) {
+                lowInvent.push("\nID: " + res[i].item_id + " ITEM: " + res[i].product_name + " QUANTITY: " + res[i].stock_quantity );
+            }
+        };
+        console.log("---------------------------------------------------------------------------------------------------");
+        console.log("Low inventory (stock quantity below 5):" + lowInvent);
+        console.log("---------------------------------------------------------------------------------------------------");
+    })
 };
