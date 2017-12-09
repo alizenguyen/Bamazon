@@ -31,7 +31,7 @@ function managerDuties() {
     },
     ]).then(function (answer) {
         if (answer.duty === "view products for sale") {
-            console.log("view product function here");
+            viewProducts();
         } else if (answer.duty === "view low inventory") {
             console.log("low inventory function here");
         } else if (answer.duty === "add to inventory") {
@@ -41,4 +41,22 @@ function managerDuties() {
         };
         connection.end();
     });
+};
+
+function viewProducts() {
+    connection.query("SELECT * FROM products", function (err, res) {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log("-----------------------------------");
+            for (var i = 0; i < res.length; i++) {
+                console.log(res[i].item_id + " : " + res[i].product_name + ", Price " + res[i].price + ", Quantity " + res[i].stock_quantity);
+            }
+            console.log("-----------------------------------");
+        }
+    });
+};
+
+function lowInventory() {
+
 };
