@@ -68,12 +68,16 @@ function promptCustomer() {
                 console.log("\n")
                 return;
             } else {
+                var quantityUpdate = chosenProduct.stock_quantity - parseInt(answer.quantity);
+                console.log(quantityUpdate);
+
                 connection.query(
-                    "UPDATE products SET ? WHERE ?", [{
-                            stock_quantity: answer.quantity
+                    "UPDATE products SET ? WHERE ?", [
+                        {
+                            stock_quantity: quantityUpdate
                         },
                         {
-                            item_id: chosenProduct.id
+                            item_id: chosenProduct.item_id
                         }
                     ],
                     function (err) {
