@@ -35,7 +35,7 @@ function managerDuties() {
         } else if (answer.duty === "add to inventory") {
             addInventory();
         } else {
-            console.log("add new product here")
+            newProduct();
         };
     });
 };
@@ -78,17 +78,17 @@ function addInventory() {
         console.log(res);
 
         inquirer.prompt([{
-            type: "list",
-            message: "Hello boss! What would you like to restock now?",
-            name: "restock",
-            choices: function() {
-                var choiceArray = [];
-                for(var i = 0; i < res.length; i++) {
-                    choiceArray.push(res[i].product_name);
-                }
-                return choiceArray;
+                type: "list",
+                message: "Hello boss! What would you like to restock now?",
+                name: "restock",
+                choices: function () {
+                    var choiceArray = [];
+                    for (var i = 0; i < res.length; i++) {
+                        choiceArray.push(res[i].product_name);
+                    }
+                    return choiceArray;
                 },
-            },    
+            },
             {
                 type: "input",
                 message: "How much would you like to add to your inventory?",
@@ -103,12 +103,11 @@ function addInventory() {
                     restockQuantity = res[i].stock_quantity;
                 }
             };
-            
+
             var restockTotal = parseInt(answer.numberrestock) + restockQuantity;
 
             connection.query(
-                "UPDATE products SET ? WHERE ?", [
-                    {
+                "UPDATE products SET ? WHERE ?", [{
                         stock_quantity: restockTotal
                     },
                     {
@@ -121,12 +120,50 @@ function addInventory() {
                     } else {
                         console.log("---------------------------------------------------------------------------------------------------");
                         console.log("Your inventory has been updated!")
-                        console.log("You now have updated " + restockProduct + " to a quantity of " + restockTotal + "." )
+                        console.log("You now have updated " + restockProduct + " to a quantity of " + restockTotal + ".")
                         console.log("---------------------------------------------------------------------------------------------------");
                         connection.end();
                     }
                 }
             )
+        });
+    });
+};
+
+function newProduct() {
+    inquirer.prompt([{
+            type: "input",
+            message: "What is the product name of your item?",
+            name: "productName",
+        },
+        {
+            type: "input",
+            message: "What is the departnment name of your item?",
+            name: "department",
+        },
+        {
+            type: "input",
+            message: "At what price?",
+            name: "price",
+        },
+        {
+            type: "input",
+            message: "How many are we ordering?",
+            name: "inventory",
+        },
+    ]).then(function (answer) {
+        connection.query("INSERT INTO products (product_name, department_name, price, stock_quantity) VALUES (?, ?, ?, ?)", [
+            answer.productName,
+            answer.department,
+            parseInt(answer.price),
+            parseInt(answer.inventory)
+        ], function (err) {
+            if (err) throw err;
+            console.log("---------------------------------------------------------------------------------------------------");
+            console.log("Product added!");
+            console.log("Product Name: " + answer.productName + " Departnment Name: " + answer.department + " Price: " + answer.price + " Inventory: " + answer.inventory);
+            console.log("---------------------------------------------------------------------------------------------------");
+            connection.end();
         });
     });
 };
