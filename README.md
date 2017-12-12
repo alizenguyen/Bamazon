@@ -16,7 +16,7 @@ The customer side of the app runs by:
 
 <img src="images/InsufficientQuantity.png" width="100%">
 
-* If the store has a sufficient amount, the transaction will occur while updating the SQL database with the remaining quantity. The total price, a thank you message, and the remaining stock of that particular item will then be displayed.  
+* If the store has a sufficient amount, the transaction will occur and update the SQL database with the remaining quantity. The total price, a thank you message, and the remaining stock of that particular item will then be displayed.  
 
 <img src="images/customer.png" width="100%">
 
