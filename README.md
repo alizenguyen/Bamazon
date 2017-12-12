@@ -6,6 +6,6 @@ Bamazon is an Amazon-like storefront using Node.js and MySQL. The bamazonCustome
 
 ## Bamazon - Customer 
 
-![Bamazon - Customer](images/customer.gif)
+![Bamazon - Customer](images/customer.gif | width = "100%")
 
 ## Bamazon - Manager
