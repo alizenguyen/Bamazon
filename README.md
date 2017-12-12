@@ -6,6 +6,14 @@ Bamazon is an Amazon-like storefront using Node.js and MySQL. The bamazonCustome
 
 ## Bamazon - Customer 
 
+The customer side of the app runs by: 
+
+* Populating a table with each product's item id, product name, and product price.
+
+* The user will then me prompted with what item he or she wants by item id and the quantity he or she would like to purchase.
+
+* If the store does not have enough of the item in stock, the message "Insufficient Quantity" will come up. 
+
 <img src="images/customer.png" width="100%">
 
 ## Bamazon - Manager
