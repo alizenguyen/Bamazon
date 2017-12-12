@@ -17,7 +17,7 @@ var connection = mysql.createConnection({
 
 connection.connect(function (err) {
     if (err) throw err;
-    console.log("connected as id " + connection.threadId);
+    //console.log("connected as id " + connection.threadId);
     managerDuties();
 });
 
@@ -58,7 +58,6 @@ function viewProducts() {
 function lowInventory() {
     connection.query("SELECT * FROM products", function (err, res) {
         if (err) throw err;
-        console.log(res);
         var lowInvent = [];
         for (var i = 0; i < res.length; i += 1) {
             if (res[i].stock_quantity < 5) {
@@ -75,7 +74,6 @@ function lowInventory() {
 function addInventory() {
     connection.query("SELECT * FROM products", function (err, res) {
         if (err) throw err;
-        console.log(res);
 
         inquirer.prompt([{
                 type: "list",
