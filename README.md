@@ -41,3 +41,7 @@ The manager side of the app consists of four components: view products for sale,
 * The "add new product" choice will allow the manager to add a completely new product to the store. It will prompt the manager of the name of the item, department, etc. The database is then updated, and the information will added will displayed back. 
 
 <img src="images/ManagerAddProduct.png" width="100%">
+
+## Future Improvements
+
+Future addition will include a supervisor level, where departments, profits, and overhead costs can be managed.
